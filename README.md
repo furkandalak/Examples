@@ -10,7 +10,31 @@
 
 priority inversion 
 
+## Asenkron (Asynchronous) 
+İşlemin başka bir işlemin tamamlanmasını beklemeden devam edebilmesi yeteneği 
+ 
+Bir işlemin sonucu beklenirken başka bir işlem devam edebilir. Örn.: Uzun süreli işlemler, dosya okuma, ağ çağrıları/bağlantıları beklenirken program başka yanıtlar verebilir. 
+ 
+### Await 
+Asenkron görevin tamamlanmasını bekletir. 
+```
+async Task<int> LongRunningOperationAsync()
+{
+    // Uzun süren bir işlem simülasyonu
+    await Task.Delay(2000);
+    
+    return 42;
+}
 
+async void MyAsyncMethod()
+{
+    Console.WriteLine("İşlem başlıyor...");
+
+    int result = await LongRunningOperationAsync();
+
+    Console.WriteLine("İşlem tamamlandı. Sonuç: " + result);
+}
+```
 
 ## Thread Lock 
 Ortak kaynağa aynı anda birden fazla iş parçasının erişimin engellemeye yarayan mekanizmadır. 
@@ -67,32 +91,6 @@ Wikipedia [Thread Pool](https://en.wikipedia.org/wiki/Thread_pool#:~:text=In%20c
 
 [Örnek](https://github.com/furkandalak/Examples/blob/main/Thread%20Pool) 
 
-## Asenkron (Asynchronous) 
-İşlemin başka bir işlemin tamamlanmasını beklemeden devam edebilmesi yeteneği 
- 
-Bir işlemin sonucu beklenirken başka bir işlem devam edebilir. Örn.: Uzun süreli işlemler, dosya okuma, ağ çağrıları/bağlantıları beklenirken program başka yanıtlar verebilir. 
- 
-### Await 
-Asenkron görevin tamamlanmasını bekletir. 
-```
-async Task<int> LongRunningOperationAsync()
-{
-    // Uzun süren bir işlem simülasyonu
-    await Task.Delay(2000);
-    
-    return 42;
-}
-
-async void MyAsyncMethod()
-{
-    Console.WriteLine("İşlem başlıyor...");
-
-    int result = await LongRunningOperationAsync();
-
-    Console.WriteLine("İşlem tamamlandı. Sonuç: " + result);
-}
-```
-
 ## Task.Run()
 C#'da Task Parallel Library ([TPL](https://learn.microsoft.com/en-us/dotnet/standard/parallel-programming/task-parallel-library-tpl)) kapsamında sunulan bir yöntemdir.
 
@@ -126,7 +124,6 @@ Detaylı Örnek [1](https://github.com/furkandalak/Examples/blob/main/Task%20Run
    - Asenkron programlamayı destekler ve Async/Await kullanımını kolaylaştırır.
    - İş parçacıkları arasında veri paylaşımını kontrol etmeyi sağlayan yüksek seviyeli senkronizasyon özelliklerini içerir.
   
-
 ### Thread:
 #### Avantajlar
 - Düşük seviyeli kontrol
