@@ -1,4 +1,4 @@
-# Dalak
+# Dalak Async Task
 
 
 1. [Semafor](https://github.com/furkandalak/Examples/blob/main/README.md#semafor-semaphore)
