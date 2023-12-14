@@ -1,0 +1,43 @@
+using System;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main()
+    {
+        Console.WriteLine("Başlangıç");
+
+        // Task.Run kullanarak asenkron bir iş parçacığında çalışacak bir görev başlatma
+        Task<int> task = Task.Run(() =>
+        {
+            Console.WriteLine("İş parçacığında çalışan görev başlatıldı.");
+
+            // Simüle edilmiş bir asenkron işlem (1 saniye uyuma)
+            Task.Delay(1000).Wait();
+
+            Console.WriteLine("İş parçacığında çalışan görev tamamlandı.");
+
+            // Sonuç döndürme
+            return 42;
+        });
+
+        Console.WriteLine("Ana iş parçacığında devam eden işlemler");
+
+        // Görev tamamlandığında sonucu almak için await kullanma
+        int result = await task;
+
+        Console.WriteLine($"Görev tamamlandı ve sonuç: {result}");
+
+        Console.WriteLine("Bitiş");
+    }
+}
+
+/*
+Çıktı:
+Başlangıç
+Ana iş parçacığında devam eden işlemler
+İş parçacığında çalışan görev başlatıldı.
+İş parçacığında çalışan görev tamamlandı.
+Görev tamamlandı ve sonuç: 42
+Bitiş
+*/
