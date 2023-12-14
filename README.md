@@ -31,9 +31,10 @@ Semafor bir sayaç ve bir kuyruk içerir. Sayaç, aynı anda izin verilen iş sa
 - FIFO Kuyruk: Bekleyen iş parçacıkları düzenlenir.
 
 ### Örnek
+```
 using System;
 using System.Threading;
-```
+
 class Program
 {
     static Semaphore semaphore = new Semaphore(2, 2); // İzin verilen iş parçacığı sayısı: 2
