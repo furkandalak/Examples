@@ -84,7 +84,14 @@ Join ile kullanılan iş parçacıklarının işlerinin tamamlamadan önce ana i
 
 [Microsoft Join](https://learn.microsoft.com/tr-tr/dotnet/api/system.threading.thread.join?view=net-8.0#system-threading-thread-join)
 
-critical section
+## Critical Section (Kritik Bölge)
+Çoklu iş parçacığı programlamasında ve senkronizasyon konseptinde önemli bir terimdir. 
+
+Kritik Bölge, aynı anda sadece bir iş parçacığının erişmesine izin verilen kod bloğunu ifade eder.
+
+Bu bölgeler, paylaşılan kaynaklara güvenli bir şekilde erişim sağlayarak eş zamanlılık sorunlarını önlemek için kullanılır.
+
+Temel amacı paylaşılan verilere paralel erişimi kontrol etmek ve güvenli bir ortam sağlamaktır. [Race Condition]'u engeller.
 
 ## Priority Inversion (Öncelik Çevirme)
 Gerçek zamanlı sistemlerde ortaya çıkabilen bir durumdur ve öncelik tabanlı bir işletim sistemi ortamında meydana gelir.
