@@ -1,4 +1,12 @@
 # Examples
+- [ ] Semaphore
+- [ ] Mutex
+- [x] Thread Pool
+- [x] Fiber Thread
+- [ ] Thread/Task.Run()
+- [x] Async Wait
+- [x] Thread Lock
+
 
 priority inversion 
 
@@ -59,12 +67,28 @@ Wikipedia [Thread Pool](https://en.wikipedia.org/wiki/Thread_pool#:~:text=In%20c
 
  
 
-Asenkron (Asynchronous) 
+## Asenkron (Asynchronous) 
 İşlemin başka bir işlemin tamamlanmasını beklemeden devam edebilmesi yeteneği 
  
 Bir işlemin sonucu beklenirken başka bir işlem devam edebilir. Örn.: Uzun süreli işlemler, dosya okuma, ağ çağrıları/bağlantıları beklenirken program başka yanıtlar verebilir. 
  
-Await 
+## Await 
 Asenkron görevin tamamlanmasını bekletir. 
+```
+async Task<int> LongRunningOperationAsync()
+{
+    // Uzun süren bir işlem simülasyonu
+    await Task.Delay(2000);
+    
+    return 42;
+}
 
- 
+async void MyAsyncMethod()
+{
+    Console.WriteLine("İşlem başlıyor...");
+
+    int result = await LongRunningOperationAsync();
+
+    Console.WriteLine("İşlem tamamlandı. Sonuç: " + result);
+}
+```
