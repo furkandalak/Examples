@@ -11,8 +11,65 @@
 7. [Fiber Thread](https://github.com/furkandalak/Examples/blob/main/README.md#fiber-thread)
 8. [Race Condition](https://github.com/furkandalak/Examples/blob/main/README.md#race-condition)
 
-## Semafor (Semaphore)[^1]
+## Mutual Exlusion (Mutex)
+Karşılıklı Dışlama, çoklu iş parçacığı programlamlasında kullanılan bir senkronizasyon mekanizmasıdır.
 
+Mutex, özellikle bir [Kritik Bölge]()'ye aynı anda sadece bir iş parçacığının girmesini sağlamak için kullanılır. 
+
+1. Kilitleme ve Kilidi Serbest Bırakma: İş parçacığı Mutex'i kilitleyerek belirli bir bölgeye giriş yapar. Kritik bölgeyi tamamladıında Mutex kilidini serbest bırakarak diğer iş parçalarının o bölgeye girmesine izin verir.
+2. Adil ve Adil Olmayan Mutex: Fair Mutex, kilit tabelinde bulunan iş parçacıklarını belirli bir sıraya göre bekletir ve bu sıraya göre kilidi serbest bırakır. Unfair Mutex ise kilidi talep eden iş parçacığını bekletmez ve talep eden iş parçacığına verir.
+3. Recursive Mutex: Aynı iş parçacığının aynı Mutex'i birden fazla kez kilitlemesine izin verebilen bir yapıya sahip olabilir.
+
+### Unfair Mutex
+Unfair Mutex bir Queue oluşturmaz. Kilitli olduğu süre boyunca gelen talepleri sıralamaz. Serbest kaldığında ilk gelen talebe cevap verir.
+
+.NET genellikle Unfair Mutex sağlar.
+
+### Örnek
+```
+using System;
+using System.Threading;
+
+class Program
+{
+    static Mutex mutex = new Mutex(); // Adil olmayan bir mutex oluşturulur.
+
+    static void Main()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            Thread t = new Thread(Worker);
+            t.Start();
+        }
+
+        Console.ReadLine();
+    }
+
+    static void Worker()
+    {
+        Console.WriteLine($"İş parçacığı {Thread.CurrentThread.ManagedThreadId} kritik bölgeye girmeye çalışıyor.");
+
+        mutex.WaitOne(); // Mutex'i kilitle
+
+        Console.WriteLine($"İş parçacığı {Thread.CurrentThread.ManagedThreadId} kritik bölgeye girdi.");
+
+        // Kritik bölge içinde yapılacak işlemler
+
+        mutex.ReleaseMutex(); // Mutex'i serbest bırak
+        Console.WriteLine($"İş parçacığı {Thread.CurrentThread.ManagedThreadId} kritik bölgeyi terk etti.");
+    }
+}
+```
+[Microsoft](https://learn.microsoft.com/en-us/dotnet/api/system.threading.mutex?view=net-8.0#examples)
+
+### Fair Mutex
+.NET Framework ile direkt olarak sağlanan bir Fair Mutex yok. 
+
+SemaphoreSlim ile Fair Mutex benzeri davranış alınabilir.
+
+[Microsoft](https://learn.microsoft.com/en-us/dotnet/api/system.threading.semaphoreslim?view=net-8.0#examples)
+
+## Semafor (Semaphore)[^1]
 
 Semafor senkronizasyon mekanizmalarından biridir ve çokly iş parçacığı veya çoklu işlemci ortamlarında kaynaklara erişimi kontrol etmek için kullanılır.
 
