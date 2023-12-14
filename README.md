@@ -54,6 +54,8 @@ public void ExampleMethod()
 ## Thread Pool 
 Sistem tarafından kullanılacak olan işlemlerin daha etkili yönetilmesi ve kullanılması için tasarlanmış bir mekanizmadır.  
 
+![](https://github.com/furkandalak/Examples/blob/main/400px-Thread_pool.svg.png)
+
 Bu sistem belirli ve sınırlı sayıda iş parçası oluşturur  
 1. İlk oluşturmada belirli sayıda iş parçası oluşturur 
 2. İş parçası istendiğinde pooldan mevcut boş iş parçacığı atanır, yoksa oluşturulur 
