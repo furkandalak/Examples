@@ -108,12 +108,12 @@ Bu örnek için Mutex senkronizasyon metodu kullanılmaktadır.
 *L < M < H*
 
 1. **L** *CS* içinde çalışmaktadır.
-2. 5. **H** başlatılır ve *CS*'e erişim talep eder, **L**'nin *CS*'den çıkmasını bekler.
+2. **H** başlatılır ve *CS*'e erişim talep eder, **L**'nin *CS*'den çıkmasını bekler.
 3. **M** başlatılır.
-7. **M** **L**'yi durdurur ve işlemine başlar.
-8. **M** tüm işlemini gerçekleştirir ve bitirir.
-9. **L** kaldığı yerden devam eder.
-10. **L** *CS*'den çıkar ve **H** *CS*'e girer.
+4. **M** **L**'yi durdurur ve işlemine başlar.
+5. **M** tüm işlemini gerçekleştirir ve bitirir.
+6. **L** kaldığı yerden devam eder.
+7. **L** *CS*'den çıkar ve **H** *CS*'e girer.
 
 Görüldüğü üzere bu durumda **M**, **L** ve **H** iş parçalarını geciktirmiştir. **H** daha yüksek öncelikli olmasına ve **M** ile aynı *CS*'i paylaşmamasına rağmen beklemiştir.
 
