@@ -10,9 +10,12 @@
 
 priority inversion 
 
-Race Condition 
 
-Fiber thread? C# içinde doğrudan kullanılan bir terim değil. Daha hafif iş parçalarına verilen isim. .NET Core 2.1 sonrasında BoundedCapacity (System.Threading.Tasks.DataFlow) konsepti var. 
+## Fiber Thread 
+C# içinde doğrudan kullanılan bir terim değil. Daha hafif iş parçalarına verilen isim. .NET Core 2.1 sonrasında 
+```BoundedCapacity (System.Threading.Tasks.DataFlow)``` konsepti var. 
+
+[Microsoft](https://learn.microsoft.com/en-us/windows/win32/procthread/fibers)
 
 ## Thread Lock 
 Ortak kaynağa aynı anda birden fazla iş parçasının erişimin engellemeye yarayan mekanizmadır. 
@@ -24,6 +27,10 @@ Eş zamanlılık sorunlarını, Race Condition’ları ve veri bütünlüğü so
 * Lock Wait: Eğer kaynağa zaten bir erişim varsa kilit açılana kadar bekler 
 * Lock Release: İş parçacığı kullanımı tamamladığında serbest bırakır 
 
+### Race Condition
+Birden fazla iş parcacığının aynı anda bir kaynağa erişmeye çalıştığı durumu ifade eder. Bu durum kontrol edilmeze veri bütünlüğü sorunları ortaya çıkabilir.
+
+Wikipedia [Örnek](https://en.wikipedia.org/wiki/Race_condition#Example)
 
 ### Locking Örneği
 ```
@@ -71,7 +78,7 @@ Wikipedia [Thread Pool](https://en.wikipedia.org/wiki/Thread_pool#:~:text=In%20c
  
 Bir işlemin sonucu beklenirken başka bir işlem devam edebilir. Örn.: Uzun süreli işlemler, dosya okuma, ağ çağrıları/bağlantıları beklenirken program başka yanıtlar verebilir. 
  
-## Await 
+### Await 
 Asenkron görevin tamamlanmasını bekletir. 
 ```
 async Task<int> LongRunningOperationAsync()
