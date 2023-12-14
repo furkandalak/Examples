@@ -3,7 +3,7 @@
 - [ ] Mutex
 - [x] Thread Pool
 - [x] Fiber Thread
-- [ ] Thread/Task.Run()
+- [x] Thread/Task.Run()
 - [x] Async Wait
 - [x] Thread Lock
 
@@ -143,7 +143,7 @@ Detaylı Örnek [1](https://github.com/furkandalak/Examples/blob/main/Task%20Run
 #### Dezavantajlar
 - Daha fazla manuel yönetim ve potansiyel hatalar
 - Daha fazla kaynak tüketebilir, iş parçacığı oluşturup yönetme maliyeti
-### Task.Run()
+### Task.Run():
 #### Avantajlar
 - Yüksek seviyeli bir API sunar ve iş parçacığı kontrolünü otomatikleştirir
 - Asenkron programlamayı destekler, verimli ve okunabilir kod yazmaya yardımcı olur
