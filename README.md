@@ -77,14 +77,27 @@ class Program
 
 [Microsoft](https://learn.microsoft.com/en-us/dotnet/api/system.threading.semaphore?view=net-8.0#examples)
 
-## Join();
+### Join();
 Thread nesnesinin tamamlanmasını beklemek için kullanılan bir metotdur. 
 
 Join ile kullanılan iş parçacıklarının işlerinin tamamlamadan önce ana iş parçacığının devam etmesini engeller.
 
 [Microsoft Join](https://learn.microsoft.com/tr-tr/dotnet/api/system.threading.thread.join?view=net-8.0#system-threading-thread-join)
 
-priority inversion 
+critical section
+
+## Priority Inversion (Öncelik Çevirme)
+Gerçek zamanlı sistemlerde ortaya çıkabilen bir durumdur ve öncelik tabanlı bir işletim sistemi ortamında meydana gelir.
+
+Normalde daha yüksek önceliğe sahip bir iş parçacığının daha düşük bir önceliğe sahip bir iş parçacığı tarafından bloke edilmesini ifade eder.
+
+### Örnek
+- Yüksek Öncelikli İş Parçacığı (High Priority Task) => **H**
+- Orta Öncelikli İş Parçacığı (Medium Priority Task) => **M**
+- Düşük Öncelikli İş Parçacığı (Low Priority Task) => **L**
+- Kritik Bölge (Critical Section) => **CS**
+
+  
 
 ## Asenkron (Asynchronous) 
 İşlemin başka bir işlemin tamamlanmasını beklemeden devam edebilmesi yeteneği 
