@@ -138,7 +138,7 @@ Detaylı Örnek [1](https://github.com/furkandalak/Examples/blob/main/Task%20Run
 ### Thread:
 #### Avantajlar
 - Düşük seviyeli kontrol
-- ÖZelleştirilmiş senkronizasyon durumlarına uygun
+- Özelleştirilmiş senkronizasyon durumlarına uygun
 - Doğrudan iş parçacığı oluşturmak/kontrol etmek isteyen geliştiricilere esneklik
 #### Dezavantajlar
 - Daha fazla manuel yönetim ve potansiyel hatalar
