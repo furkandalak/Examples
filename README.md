@@ -206,6 +206,10 @@ Bu örnek için Mutex senkronizasyon metodu kullanılmaktadır.
 
 Görüldüğü üzere bu durumda **M**, **L** ve **H** iş parçalarını geciktirmiştir. **H** daha yüksek öncelikli olmasına ve **M** ile aynı *CS*'i paylaşmamasına rağmen beklemiştir.
 
+[Wikipedia](https://en.wikipedia.org/wiki/Priority_inversion)
+
+
+
 ## Mutual Exlusion (Mutex)
 Karşılıklı Dışlama, çoklu iş parçacığı programlamlasında kullanılan bir senkronizasyon mekanizmasıdır.
 
