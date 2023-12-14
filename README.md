@@ -27,6 +27,50 @@ Semafor bir sayaç ve bir kuyruk içerir. Sayaç, aynı anda izin verilen iş sa
 5. İş parçacığı kaynağı kullandıktan sonra semafora kaynağı bıraktığını bildirir.
 6. Bekleyen diğer iş parçacıklarından biri, bıraklıan kaynağı alır ve sayaç artar.
 
+- Wait ve Release Metotları: Wait semafora erişim talep eder ve kaynağı kullanmaya başlar, Release kaynağı bırakarak diğer iş parçacıklarının kullanabilmesini sağlar
+- FIFO Kuyruk: Bekleyen iş parçacıkları düzenlenir.
+
+### Örnek
+using System;
+using System.Threading;
+```
+class Program
+{
+    static Semaphore semaphore = new Semaphore(2, 2); // İzin verilen iş parçacığı sayısı: 2
+
+    static void Main()
+    {
+        Thread t1 = new Thread(Worker);
+        Thread t2 = new Thread(Worker);
+
+        t1.Start();
+        t2.Start();
+
+        t1.Join();
+        t2.Join();
+
+        Console.WriteLine("İşlem tamamlandı.");
+    }
+
+    static void Worker()
+    {
+        Console.WriteLine($"İş parçacığı {Thread.CurrentThread.ManagedThreadId} çalışmaya başladı.");
+
+        // Kaynağa erişim talebi
+        semaphore.WaitOne();
+
+        Console.WriteLine($"İş parçacığı {Thread.CurrentThread.ManagedThreadId} kaynağı kullanıyor.");
+
+        // Simüle edilmiş bir işlem süresi
+        Thread.Sleep(2000);
+
+        Console.WriteLine($"İş parçacığı {Thread.CurrentThread.ManagedThreadId} kaynağı kullanımını tamamladı.");
+
+        // Kaynağı bırakma
+        semaphore.Release();
+    }
+}
+```
 priority inversion 
 
 ## Asenkron (Asynchronous) 
