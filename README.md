@@ -69,7 +69,7 @@ Avantajlar:
 - Asenkron: Task-Based Async/Await operasyonlarını destekler. 
 - Kuyruk: Kuyruk sistemi içinde düzenler, belirli sırayla önceliklendirme yapılabilir 
 
-Wikipedia [Thread Pool](https://en.wikipedia.org/wiki/Thread_pool#:~:text=In%20computer%20programming%2C%20a%20thread,execution%20by%20the%20supervising%20program.) [Embarrassingly Parallel](https://en.wikipedia.org/wiki/Embarrassingly_parallel)
+Wikipedia [Thread Pool](https://en.wikipedia.org/wiki/Thread_pool#:~:text=In%20computer%20programming%2C%20a%20thread,execution%20by%20the%20supervising%20program.), [Embarrassingly Parallel](https://en.wikipedia.org/wiki/Embarrassingly_parallel)
 
 [Microsoft](https://learn.microsoft.com/tr-tr/dotnet/api/system.threading.threadpool?view=net-8.0#examples)
 
@@ -100,3 +100,14 @@ async void MyAsyncMethod()
     Console.WriteLine("İşlem tamamlandı. Sonuç: " + result);
 }
 ```
+
+## Task.Run()
+C#'da Task Parallel Library ([TPL](https://learn.microsoft.com/en-us/dotnet/standard/parallel-programming/task-parallel-library-tpl)) kapsamında sunulan bir yöntemdir.
+
+```
+Task.Run(() =>
+{
+    // Asenkron çalışacak kod bloğu
+});
+```
+Detaylı Örnek [1](https://github.com/furkandalak/Examples/blob/main/Task%20Run%201), [2](https://github.com/furkandalak/Examples/blob/main/Task%20Run%202)
