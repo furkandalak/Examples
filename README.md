@@ -111,9 +111,29 @@ Task.Run(() =>
 });
 ```
 
-
+- Asenkron Olay Başlatma: İçine aldığı metodu asenkron olarak başlatır ve bir "Task" döndürür.
+- Task Döndürme: Bir "Task" döndürür ve bu sayede operasyonun tamamlanma durumu takip etmek ve sonucu ele almak mümkündür.
+- Kullanım: Async/Await anahtar kelimeleri ile kullanılarak okunurluk artırılır.
+- Thread Pool: İş parçacığı havuzunu kullanarak operasyonları çalıştırır.
 
 > [!WARNING]
 > ```Task.Run()``` her zaman daha iyi performans vermeyebilir. Küçük ve hızlı işlemler i.in doğrudan asenkron yöntemler tercih edilebilir.
 
 Detaylı Örnek [1](https://github.com/furkandalak/Examples/blob/main/Task%20Run%201), [2](https://github.com/furkandalak/Examples/blob/main/Task%20Run%202)
+
+## Task.Run() VS Thread
+
+1. Thread
+   - Doğrudan iş parçacığı oluşturmayı sağlar.
+   - İş parçacığı oluşturmak. yönetmek ve sonlandırmak direkt geliştiricinin sorumluluğundadır.
+   - Düşük seviyelidir. İş parçacığını manuel kontrol etme imkanı verir.
+   - Genellikle düşük seviyeli senkronizasyon mekanizmalarını gerektirir. Örnek: Lock, Mutex.
+2. Task.Run()
+   - .NET Task Parallel Library tarafından sağlanan yüksek seviyeli API'dır.
+   - .NET çalışma zamanı thread pool'u yönetimi ve iş parçacığı oluşturma gibi karmaşık görevleri otomatik yönetir.
+   - Asenkron programlamayı destekler ve Async/Await kullanımını kolaylaştırır.
+   - İş parçacıkları arasında veri paylaşımını kontrol etmeyi sağlayan yüksek seviyeli senkronizasyon özelliklerini içerir.
+  
+
+
+
