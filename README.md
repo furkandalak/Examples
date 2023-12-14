@@ -92,10 +92,10 @@ Gerçek zamanlı sistemlerde ortaya çıkabilen bir durumdur ve öncelik tabanl�
 Normalde daha yüksek önceliğe sahip bir iş parçacığının daha düşük bir önceliğe sahip bir iş parçacığı tarafından bloke edilmesini ifade eder.
 
 ### Örnek
-- Yüksek Öncelikli İş Parçacığı (High Priority Task) => **H**
-- Orta Öncelikli İş Parçacığı (Medium Priority Task) => **M**
-- Düşük Öncelikli İş Parçacığı (Low Priority Task) => **L**
-- Kritik Bölge (Critical Section) => **CS**
+- Yüksek Öncelikli İş Parçacığı (High Priority Task) > **H**
+- Orta Öncelikli İş Parçacığı (Medium Priority Task) > **M**
+- Düşük Öncelikli İş Parçacığı (Low Priority Task) > **L**
+- Kritik Bölge (Critical Section) > **CS**
 
   
 
