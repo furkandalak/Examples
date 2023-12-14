@@ -13,57 +13,7 @@
 
 
 
-## Critical Section (Kritik Bölge)
-Çoklu iş parçacığı programlamasında ve senkronizasyon konseptinde önemli bir terimdir. 
 
-Kritik Bölge, aynı anda sadece bir iş parçacığının erişmesine izin verilen kod bloğunu ifade eder.
-
-Bu bölgeler, paylaşılan kaynaklara güvenli bir şekilde erişim sağlayarak eş zamanlılık sorunlarını önlemek için kullanılır.
-
-Temel amacı paylaşılan verilere paralel erişimi kontrol etmek ve güvenli bir ortam sağlamaktır. [Race Condition](https://github.com/furkandalak/Examples/blob/main/README.md#race-condition)'u engeller.
-
-1. Mutual Exclusion: Kritik bölge, aynı anda sadece bir iş parçacığının içine girebildiği bir yapıdır.
-2. Veri Bütünlüğü: Kritik Bölge içindeki kodun çalışması tamamlanınca, veri bütünlüğü korunmuş olur.
-
-```
-lock (lockObject)
-{
-    // Kritik bölgeye ait kod
-    // ...
-    // Paylaşılan verilere güvenli bir şekilde erişim
-}
-```
-
-## Priority Inversion (Öncelik Çevirme)
-Gerçek zamanlı sistemlerde ortaya çıkabilen bir durumdur ve öncelik tabanlı bir işletim sistemi ortamında meydana gelir.
-
-Normalde daha yüksek önceliğe sahip bir iş parçacığının daha düşük bir önceliğe sahip bir iş parçacığı tarafından bloke edilmesini ifade eder.
-
-> [!WARNING]
-> Düşük öncelikli iş parçacığı ortak bir Kritik Bölge'de işlem yapmıyorsa Priority Inversion problemi yaşanmaz.
-
-### Örnek
-
-Bu örnek için Mutex senkronizasyon metodu kullanılmaktadır.
-
-- Yüksek Öncelikli İş Parçacığı (High Priority Task) > **H**
-- Orta Öncelikli İş Parçacığı (Medium Priority Task) > **M**
-- Düşük Öncelikli İş Parçacığı (Low Priority Task) > **L**
-- Kritik Bölge (Critical Section) > **CS**
-
-**L ve H aynı CS'i paylaşmaktadır. M paylaşmamaktadır.**
-
-*L < M < H*
-
-1. **L** *CS* içinde çalışmaktadır.
-2. **H** başlatılır ve *CS*'e erişim talep eder, **L**'nin *CS*'den çıkmasını bekler.
-3. **M** başlatılır.
-4. **M** **L**'yi durdurur ve işlemine başlar.
-5. **M** tüm işlemini gerçekleştirir ve bitirir.
-6. **L** kaldığı yerden devam eder.
-7. **L** *CS*'den çıkar ve **H** *CS*'e girer.
-
-Görüldüğü üzere bu durumda **M**, **L** ve **H** iş parçalarını geciktirmiştir. **H** daha yüksek öncelikli olmasına ve **M** ile aynı *CS*'i paylaşmamasına rağmen beklemiştir.
 
 ## Asenkron (Asynchronous) 
 İşlemin başka bir işlemin tamamlanmasını beklemeden devam edebilmesi yeteneği 
@@ -204,6 +154,57 @@ C# içinde doğrudan kullanılan bir terim değil. Daha hafif iş parçalarına 
 
 [Microsoft](https://learn.microsoft.com/en-us/windows/win32/procthread/fibers)
 
+## Critical Section (Kritik Bölge)
+Çoklu iş parçacığı programlamasında ve senkronizasyon konseptinde önemli bir terimdir. 
+
+Kritik Bölge, aynı anda sadece bir iş parçacığının erişmesine izin verilen kod bloğunu ifade eder.
+
+Bu bölgeler, paylaşılan kaynaklara güvenli bir şekilde erişim sağlayarak eş zamanlılık sorunlarını önlemek için kullanılır.
+
+Temel amacı paylaşılan verilere paralel erişimi kontrol etmek ve güvenli bir ortam sağlamaktır. [Race Condition](https://github.com/furkandalak/Examples/blob/main/README.md#race-condition)'u engeller.
+
+1. Mutual Exclusion: Kritik bölge, aynı anda sadece bir iş parçacığının içine girebildiği bir yapıdır.
+2. Veri Bütünlüğü: Kritik Bölge içindeki kodun çalışması tamamlanınca, veri bütünlüğü korunmuş olur.
+
+```
+lock (lockObject)
+{
+    // Kritik bölgeye ait kod
+    // ...
+    // Paylaşılan verilere güvenli bir şekilde erişim
+}
+```
+
+## Priority Inversion (Öncelik Çevirme)
+Gerçek zamanlı sistemlerde ortaya çıkabilen bir durumdur ve öncelik tabanlı bir işletim sistemi ortamında meydana gelir.
+
+Normalde daha yüksek önceliğe sahip bir iş parçacığının daha düşük bir önceliğe sahip bir iş parçacığı tarafından bloke edilmesini ifade eder.
+
+> [!WARNING]
+> Düşük öncelikli iş parçacığı ortak bir Kritik Bölge'de işlem yapmıyorsa Priority Inversion problemi yaşanmaz.
+
+### Örnek
+
+Bu örnek için Mutex senkronizasyon metodu kullanılmaktadır.
+
+- Yüksek Öncelikli İş Parçacığı (High Priority Task) > **H**
+- Orta Öncelikli İş Parçacığı (Medium Priority Task) > **M**
+- Düşük Öncelikli İş Parçacığı (Low Priority Task) > **L**
+- Kritik Bölge (Critical Section) > **CS**
+
+**L ve H aynı CS'i paylaşmaktadır. M paylaşmamaktadır.**
+
+*L < M < H*
+
+1. **L** *CS* içinde çalışmaktadır.
+2. **H** başlatılır ve *CS*'e erişim talep eder, **L**'nin *CS*'den çıkmasını bekler.
+3. **M** başlatılır.
+4. **M** **L**'yi durdurur ve işlemine başlar.
+5. **M** tüm işlemini gerçekleştirir ve bitirir.
+6. **L** kaldığı yerden devam eder.
+7. **L** *CS*'den çıkar ve **H** *CS*'e girer.
+
+Görüldüğü üzere bu durumda **M**, **L** ve **H** iş parçalarını geciktirmiştir. **H** daha yüksek öncelikli olmasına ve **M** ile aynı *CS*'i paylaşmamasına rağmen beklemiştir.
 
 ## Mutual Exlusion (Mutex)
 Karşılıklı Dışlama, çoklu iş parçacığı programlamlasında kullanılan bir senkronizasyon mekanizmasıdır.
