@@ -41,6 +41,7 @@ public void ExampleMethod()
 ```
 
 [Detaylı Örnek](https://github.com/furkandalak/Examples/blob/main/Locking%20Example)
+
 [Microsoft](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock#example)
 
 ## Thread Pool 
@@ -60,12 +61,10 @@ Avantajlar:
 - Kuyruk: Kuyruk sistemi içinde düzenler, belirli sırayla önceliklendirme yapılabilir 
 
 Wikipedia [Thread Pool](https://en.wikipedia.org/wiki/Thread_pool#:~:text=In%20computer%20programming%2C%20a%20thread,execution%20by%20the%20supervising%20program.) [Embarrassingly Parallel](https://en.wikipedia.org/wiki/Embarrassingly_parallel)
+
 [Microsoft](https://learn.microsoft.com/tr-tr/dotnet/api/system.threading.threadpool?view=net-8.0#examples)
-[Örnek](https://github.com/furkandalak/Examples/blob/main/Thread%20Pool)
 
- 
-
- 
+[Örnek](https://github.com/furkandalak/Examples/blob/main/Thread%20Pool) 
 
 ## Asenkron (Asynchronous) 
 İşlemin başka bir işlemin tamamlanmasını beklemeden devam edebilmesi yeteneği 
