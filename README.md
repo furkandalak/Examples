@@ -77,6 +77,12 @@ class Program
 
 [Microsoft](https://learn.microsoft.com/en-us/dotnet/api/system.threading.semaphore?view=net-8.0#examples)
 
+## Join();
+Thread nesnesinin tamamlanmasını beklemek için kullanılan bir metotdur. 
+
+Join ile kullanılan iş parçacıklarının işlerinin tamamlamadan önce ana iş parçacığının devam etmesini engeller.
+
+[Microsoft Join](https://learn.microsoft.com/tr-tr/dotnet/api/system.threading.thread.join?view=net-8.0#system-threading-thread-join)
 
 priority inversion 
 
