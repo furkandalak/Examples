@@ -110,4 +110,10 @@ Task.Run(() =>
     // Asenkron çalışacak kod bloğu
 });
 ```
+
+
+
+> [!WARNING]
+> ```Task.Run()``` her zaman daha iyi performans vermeyebilir. Küçük ve hızlı işlemler i.in doğrudan asenkron yöntemler tercih edilebilir.
+
 Detaylı Örnek [1](https://github.com/furkandalak/Examples/blob/main/Task%20Run%201), [2](https://github.com/furkandalak/Examples/blob/main/Task%20Run%202)
