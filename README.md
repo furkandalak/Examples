@@ -15,7 +15,7 @@ priority inversion
 ## Thread Lock 
 Ortak kaynağa aynı anda birden fazla iş parçasının erişimin engellemeye yarayan mekanizmadır. 
 
-Eş zamanlılık sorunlarını, [Race Condition]()’ları ve veri bütünlüğü sorunlarını engellemeye yardımcı olur. 
+Eş zamanlılık sorunlarını, [Race Condition](https://github.com/furkandalak/Examples/blob/main/README.md#race-condition)’ları ve veri bütünlüğü sorunlarını engellemeye yardımcı olur. 
 
 * Locking: İş parçacığı belirli bir kaynağa erişim sağlarken locklamaya çalışır 
 * Lock Check: O kaynağa erişilemiyorsa iş parçacığı bu kaynağı kullanabilir veya kilitleyebilir 
