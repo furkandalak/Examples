@@ -148,7 +148,7 @@ Detaylı Örnek [1](https://github.com/furkandalak/Examples/blob/main/Task%20Run
 - Yüksek seviyeli bir API sunar ve iş parçacığı kontrolünü otomatikleştirir
 - Asenkron programlamayı destekler, verimli ve okunabilir kod yazmaya yardımcı olur
 - Task'ler thread pool'u etkili kullanarak performans artırabilir
-####Dezavantajlar
+#### Dezavantajlar
 - Daha fazla soyutlamayla gelir, geliştiricinin kontrolünü niraz kaybetmesine neden olabilir
 - Daha karmaşık senkronizasyon senaryolarında kullanımı zor olabilir
 
