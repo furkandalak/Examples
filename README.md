@@ -9,6 +9,9 @@
 
 
 
+## Mutex (Mutual Exclusion)
+
+
 ## Semafor (Semaphore)
 *Fransızca sémaphore*
 - *isim* Demir yollarında gündüz mekanik olarak kırmızı bir kolla, gece kırmızı ışıkla işaret veren alet.
@@ -72,6 +75,10 @@ class Program
     }
 }
 ```
+
+[Microsoft](https://learn.microsoft.com/en-us/dotnet/api/system.threading.semaphore?view=net-8.0#examples)
+
+
 priority inversion 
 
 ## Asenkron (Asynchronous) 
