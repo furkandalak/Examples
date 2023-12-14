@@ -1,0 +1,32 @@
+using System;
+using System.Threading;
+
+class Program
+{
+    static void Main()
+    {
+        // Thread pool'da işlemek üzere bir dizi görev ekleyelim
+        for (int i = 0; i < 5; i++)
+        {
+            int taskNumber = i + 1;
+            ThreadPool.QueueUserWorkItem(ProcessTask, taskNumber);
+        }
+
+        Console.WriteLine("Görevler thread pool'a eklendi.");
+
+        // Uygulama devam ederken ana thread uyusun (Devam eden işlemleri görmek için)
+        Thread.Sleep(2000);
+    }
+
+    static void ProcessTask(object taskNumberObj)
+    {
+        int taskNumber = (int)taskNumberObj;
+
+        Console.WriteLine($"Görev {taskNumber} başlatıldı.");
+
+        // Simüle edilmiş işlem süresi
+        Thread.Sleep(1000);
+
+        Console.WriteLine($"Görev {taskNumber} tamamlandı.");
+    }
+}
