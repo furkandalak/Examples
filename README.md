@@ -8,10 +8,6 @@
 - [x] Thread Lock
 
 
-
-## Mutex (Mutual Exclusion)
-
-
 ## Semafor (Semaphore)
 *Fransızca sémaphore*
 - *isim* Demir yollarında gündüz mekanik olarak kırmızı bir kolla, gece kırmızı ışıkla işaret veren alet.
