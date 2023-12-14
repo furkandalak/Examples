@@ -11,26 +11,18 @@
 priority inversion 
 
 
-## Fiber Thread 
-C# içinde doğrudan kullanılan bir terim değil. Daha hafif iş parçalarına verilen isim. .NET Core 2.1 sonrasında 
-```BoundedCapacity (System.Threading.Tasks.DataFlow)``` konsepti var. 
-
-[Microsoft](https://learn.microsoft.com/en-us/windows/win32/procthread/fibers)
 
 ## Thread Lock 
 Ortak kaynağa aynı anda birden fazla iş parçasının erişimin engellemeye yarayan mekanizmadır. 
 
-Eş zamanlılık sorunlarını, Race Condition’ları ve veri bütünlüğü sorunlarını engellemeye yardımcı olur. 
+Eş zamanlılık sorunlarını, [Race Condition]()’ları ve veri bütünlüğü sorunlarını engellemeye yardımcı olur. 
 
 * Locking: İş parçacığı belirli bir kaynağa erişim sağlarken locklamaya çalışır 
 * Lock Check: O kaynağa erişilemiyorsa iş parçacığı bu kaynağı kullanabilir veya kilitleyebilir 
 * Lock Wait: Eğer kaynağa zaten bir erişim varsa kilit açılana kadar bekler 
 * Lock Release: İş parçacığı kullanımı tamamladığında serbest bırakır 
 
-### Race Condition
-Birden fazla iş parcacığının aynı anda bir kaynağa erişmeye çalıştığı durumu ifade eder. Bu durum kontrol edilmeze veri bütünlüğü sorunları ortaya çıkabilir.
 
-Wikipedia [Örnek](https://en.wikipedia.org/wiki/Race_condition#Example)
 
 ### Locking Örneği
 ```
@@ -153,6 +145,17 @@ Detaylı Örnek [1](https://github.com/furkandalak/Examples/blob/main/Task%20Run
 - Daha karmaşık senkronizasyon senaryolarında kullanımı zor olabilir
 
 Tercih, uygulamanın ihtiyaçlarına, ölçeklerine, gereksinimlerine ve geliştiricinin tercihine bağlıdır. Genellikle modern C# uygulamalarında Task.Run() ve Task-Based asenkron programlama daha yaygındır.
+
+## Fiber Thread 
+C# içinde doğrudan kullanılan bir terim değil. Daha hafif iş parçalarına verilen isim. .NET Core 2.1 sonrasında 
+```BoundedCapacity (System.Threading.Tasks.DataFlow)``` konsepti var. 
+
+[Microsoft](https://learn.microsoft.com/en-us/windows/win32/procthread/fibers)
+
+## Race Condition
+Birden fazla iş parcacığının aynı anda bir kaynağa erişmeye çalıştığı durumu ifade eder. Bu durum kontrol edilmeze veri bütünlüğü sorunları ortaya çıkabilir.
+
+Wikipedia [Örnek](https://en.wikipedia.org/wiki/Race_condition#Example)
 
 ## Ekstra
 Pathfinder olayı [TR](https://medium.com/@gokhansengun/mars-ke%C5%9Fif-arac%C4%B1-pathfinderdaki-i%CC%87lgin%C3%A7-yaz%C4%B1l%C4%B1m-problemi-5b6ebe771d55), [EN](https://www.rapitasystems.com/blog/what-really-happened-software-mars-pathfinder-spacecraft)
