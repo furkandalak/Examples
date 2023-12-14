@@ -152,6 +152,11 @@ C# içinde doğrudan kullanılan bir terim değil. Daha hafif iş parçalarına 
 ## Race Condition
 Birden fazla iş parcacığının aynı anda bir kaynağa erişmeye çalıştığı durumu ifade eder. Bu durum kontrol edilmeze veri bütünlüğü sorunları ortaya çıkabilir.
 
+## Semafor (Semaphore)
+> *Fransızca sémaphore*
+> *isim* Demir yollarında gündüz mekanik olarak kırmızı bir kolla, gece kırmızı ışıkla işaret veren alet.
+> *isim* İki gemi veya gemi ile kıyı istasyonu arasında haberleşmede kullanılan üç kollu işaret sütunu.
+
 Wikipedia [Örnek](https://en.wikipedia.org/wiki/Race_condition#Example)
 
 ## Ekstra
