@@ -135,8 +135,24 @@ Detaylı Örnek [1](https://github.com/furkandalak/Examples/blob/main/Task%20Run
    - İş parçacıkları arasında veri paylaşımını kontrol etmeyi sağlayan yüksek seviyeli senkronizasyon özelliklerini içerir.
   
 
+### Thread:
+#### Avantajlar
+- Düşük seviyeli kontrol
+- ÖZelleştirilmiş senkronizasyon durumlarına uygun
+- Doğrudan iş parçacığı oluşturmak/kontrol etmek isteyen geliştiricilere esneklik
+#### Dezavantajlar
+- Daha fazla manuel yönetim ve potansiyel hatalar
+- Daha fazla kaynak tüketebilir, iş parçacığı oluşturup yönetme maliyeti
+### Task.Run()
+#### Avantajlar
+- Yüksek seviyeli bir API sunar ve iş parçacığı kontrolünü otomatikleştirir
+- Asenkron programlamayı destekler, verimli ve okunabilir kod yazmaya yardımcı olur
+- Task'ler thread pool'u etkili kullanarak performans artırabilir
+####Dezavantajlar
+- Daha fazla soyutlamayla gelir, geliştiricinin kontrolünü niraz kaybetmesine neden olabilir
+- Daha karmaşık senkronizasyon senaryolarında kullanımı zor olabilir
 
-
+Tercih, uygulamanın ihtiyaçlarına, ölçeklerine, gereksinimlerine ve geliştiricinin tercihine bağlıdır. Genellikle modern C# uygulamalarında Task.Run() ve Task-Based asenkron programlama daha yaygındır.
 
 ## Ekstra
 Pathfinder olayı [TR](https://medium.com/@gokhansengun/mars-ke%C5%9Fif-arac%C4%B1-pathfinderdaki-i%CC%87lgin%C3%A7-yaz%C4%B1l%C4%B1m-problemi-5b6ebe771d55), [EN](https://www.rapitasystems.com/blog/what-really-happened-software-mars-pathfinder-spacecraft)
