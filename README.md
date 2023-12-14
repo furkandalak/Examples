@@ -11,7 +11,9 @@
 
 ## Semafor (Semaphore)
 *Fransızca sémaphore*
+
 *isim* Demir yollarında gündüz mekanik olarak kırmızı bir kolla, gece kırmızı ışıkla işaret veren alet.
+
 *isim* İki gemi veya gemi ile kıyı istasyonu arasında haberleşmede kullanılan üç kollu işaret sütunu.
 
 Semafor senkronizasyon mekanizmalarından biridir ve çokly iş parçacığı veya çoklu işlemci ortamlarında kaynaklara erişimi kontrol etmek için kullanılır.
