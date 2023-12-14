@@ -11,133 +11,7 @@
 7. [Fiber Thread](https://github.com/furkandalak/Examples/blob/main/README.md#fiber-thread)
 8. [Race Condition](https://github.com/furkandalak/Examples/blob/main/README.md#race-condition)
 
-## Mutual Exlusion (Mutex)
-Karşılıklı Dışlama, çoklu iş parçacığı programlamlasında kullanılan bir senkronizasyon mekanizmasıdır.
 
-Mutex, özellikle bir [Kritik Bölge]()'ye aynı anda sadece bir iş parçacığının girmesini sağlamak için kullanılır. 
-
-1. Kilitleme ve Kilidi Serbest Bırakma: İş parçacığı Mutex'i kilitleyerek belirli bir bölgeye giriş yapar. Kritik bölgeyi tamamladıında Mutex kilidini serbest bırakarak diğer iş parçalarının o bölgeye girmesine izin verir.
-2. Adil ve Adil Olmayan Mutex: Fair Mutex, kilit tabelinde bulunan iş parçacıklarını belirli bir sıraya göre bekletir ve bu sıraya göre kilidi serbest bırakır. Unfair Mutex ise kilidi talep eden iş parçacığını bekletmez ve talep eden iş parçacığına verir.
-3. Recursive Mutex: Aynı iş parçacığının aynı Mutex'i birden fazla kez kilitlemesine izin verebilen bir yapıya sahip olabilir.
-
-### Unfair Mutex
-Unfair Mutex bir Queue oluşturmaz. Kilitli olduğu süre boyunca gelen talepleri sıralamaz. Serbest kaldığında ilk gelen talebe cevap verir.
-
-.NET genellikle Unfair Mutex sağlar.
-
-### Örnek
-```
-using System;
-using System.Threading;
-
-class Program
-{
-    static Mutex mutex = new Mutex(); // Adil olmayan bir mutex oluşturulur.
-
-    static void Main()
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            Thread t = new Thread(Worker);
-            t.Start();
-        }
-
-        Console.ReadLine();
-    }
-
-    static void Worker()
-    {
-        Console.WriteLine($"İş parçacığı {Thread.CurrentThread.ManagedThreadId} kritik bölgeye girmeye çalışıyor.");
-
-        mutex.WaitOne(); // Mutex'i kilitle
-
-        Console.WriteLine($"İş parçacığı {Thread.CurrentThread.ManagedThreadId} kritik bölgeye girdi.");
-
-        // Kritik bölge içinde yapılacak işlemler
-
-        mutex.ReleaseMutex(); // Mutex'i serbest bırak
-        Console.WriteLine($"İş parçacığı {Thread.CurrentThread.ManagedThreadId} kritik bölgeyi terk etti.");
-    }
-}
-```
-[Microsoft](https://learn.microsoft.com/en-us/dotnet/api/system.threading.mutex?view=net-8.0#examples)
-
-### Fair Mutex
-.NET Framework ile direkt olarak sağlanan bir Fair Mutex yok. 
-
-SemaphoreSlim ile Fair Mutex benzeri davranış alınabilir.
-
-[Microsoft](https://learn.microsoft.com/en-us/dotnet/api/system.threading.semaphoreslim?view=net-8.0#examples)
-
-## Semafor (Semaphore)[^1]
-
-Semafor senkronizasyon mekanizmalarından biridir ve çokly iş parçacığı veya çoklu işlemci ortamlarında kaynaklara erişimi kontrol etmek için kullanılır.
-
-Belirli bir kaynağa aynı anda kaç iş parçacığının erişebileceğini kontrol eder.
-
-Semafor bir sayaç ve bir kuyruk içerir. Sayaç, aynı anda izin verilen iş sayısını, kuyruk, sayaç doluyken sonraki işlemleri tutar.
-
-1. Bir iş parçacığı semafora erişim talebinde bulunur.
-2. Semafor sayaç değerini kontrol eder.
-   1. Eğer sayaç sıfırsa, iş parçacığı beklemeye alınır, kuyruğa eklenir.
-   2. Eğer sayaç sıfır değilse, sayaç bir azaltılır ve iş parçacığı kaynağı kullanmaya başlar.
-5. İş parçacığı kaynağı kullandıktan sonra semafora kaynağı bıraktığını bildirir.
-6. Bekleyen diğer iş parçacıklarından biri, bıraklıan kaynağı alır ve sayaç artar.
-
-- Wait ve Release Metotları: Wait semafora erişim talep eder ve kaynağı kullanmaya başlar, Release kaynağı bırakarak diğer iş parçacıklarının kullanabilmesini sağlar
-- FIFO Kuyruk: Bekleyen iş parçacıkları düzenlenir.
-
-### Örnek
-```
-using System;
-using System.Threading;
-
-class Program
-{
-    static Semaphore semaphore = new Semaphore(2, 2); // İzin verilen iş parçacığı sayısı: 2
-
-    static void Main()
-    {
-        Thread t1 = new Thread(Worker);
-        Thread t2 = new Thread(Worker);
-
-        t1.Start();
-        t2.Start();
-
-        t1.Join();
-        t2.Join();
-
-        Console.WriteLine("İşlem tamamlandı.");
-    }
-
-    static void Worker()
-    {
-        Console.WriteLine($"İş parçacığı {Thread.CurrentThread.ManagedThreadId} çalışmaya başladı.");
-
-        // Kaynağa erişim talebi
-        semaphore.WaitOne();
-
-        Console.WriteLine($"İş parçacığı {Thread.CurrentThread.ManagedThreadId} kaynağı kullanıyor.");
-
-        // Simüle edilmiş bir işlem süresi
-        Thread.Sleep(2000);
-
-        Console.WriteLine($"İş parçacığı {Thread.CurrentThread.ManagedThreadId} kaynağı kullanımını tamamladı.");
-
-        // Kaynağı bırakma
-        semaphore.Release();
-    }
-}
-```
-
-[Microsoft](https://learn.microsoft.com/en-us/dotnet/api/system.threading.semaphore?view=net-8.0#examples)
-
-### Join();
-Thread nesnesinin tamamlanmasını beklemek için kullanılan bir metotdur. 
-
-Join ile kullanılan iş parçacıklarının işlerinin tamamlamadan önce ana iş parçacığının devam etmesini engeller.
-
-[Microsoft Join](https://learn.microsoft.com/tr-tr/dotnet/api/system.threading.thread.join?view=net-8.0#system-threading-thread-join)
 
 ## Critical Section (Kritik Bölge)
 Çoklu iş parçacığı programlamasında ve senkronizasyon konseptinde önemli bir terimdir. 
@@ -329,6 +203,135 @@ C# içinde doğrudan kullanılan bir terim değil. Daha hafif iş parçalarına 
 ```BoundedCapacity (System.Threading.Tasks.DataFlow)``` konsepti var. 
 
 [Microsoft](https://learn.microsoft.com/en-us/windows/win32/procthread/fibers)
+
+
+## Mutual Exlusion (Mutex)
+Karşılıklı Dışlama, çoklu iş parçacığı programlamlasında kullanılan bir senkronizasyon mekanizmasıdır.
+
+Mutex, özellikle bir [Kritik Bölge]()'ye aynı anda sadece bir iş parçacığının girmesini sağlamak için kullanılır. 
+
+1. Kilitleme ve Kilidi Serbest Bırakma: İş parçacığı Mutex'i kilitleyerek belirli bir bölgeye giriş yapar. Kritik bölgeyi tamamladıında Mutex kilidini serbest bırakarak diğer iş parçalarının o bölgeye girmesine izin verir.
+2. Adil ve Adil Olmayan Mutex: Fair Mutex, kilit tabelinde bulunan iş parçacıklarını belirli bir sıraya göre bekletir ve bu sıraya göre kilidi serbest bırakır. Unfair Mutex ise kilidi talep eden iş parçacığını bekletmez ve talep eden iş parçacığına verir.
+3. Recursive Mutex: Aynı iş parçacığının aynı Mutex'i birden fazla kez kilitlemesine izin verebilen bir yapıya sahip olabilir.
+
+### Unfair Mutex
+Unfair Mutex bir Queue oluşturmaz. Kilitli olduğu süre boyunca gelen talepleri sıralamaz. Serbest kaldığında ilk gelen talebe cevap verir.
+
+.NET genellikle Unfair Mutex sağlar.
+
+### Örnek
+```
+using System;
+using System.Threading;
+
+class Program
+{
+    static Mutex mutex = new Mutex(); // Adil olmayan bir mutex oluşturulur.
+
+    static void Main()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            Thread t = new Thread(Worker);
+            t.Start();
+        }
+
+        Console.ReadLine();
+    }
+
+    static void Worker()
+    {
+        Console.WriteLine($"İş parçacığı {Thread.CurrentThread.ManagedThreadId} kritik bölgeye girmeye çalışıyor.");
+
+        mutex.WaitOne(); // Mutex'i kilitle
+
+        Console.WriteLine($"İş parçacığı {Thread.CurrentThread.ManagedThreadId} kritik bölgeye girdi.");
+
+        // Kritik bölge içinde yapılacak işlemler
+
+        mutex.ReleaseMutex(); // Mutex'i serbest bırak
+        Console.WriteLine($"İş parçacığı {Thread.CurrentThread.ManagedThreadId} kritik bölgeyi terk etti.");
+    }
+}
+```
+[Microsoft](https://learn.microsoft.com/en-us/dotnet/api/system.threading.mutex?view=net-8.0#examples)
+
+### Fair Mutex
+.NET Framework ile direkt olarak sağlanan bir Fair Mutex yok. 
+
+SemaphoreSlim ile Fair Mutex benzeri davranış alınabilir.
+
+[Microsoft](https://learn.microsoft.com/en-us/dotnet/api/system.threading.semaphoreslim?view=net-8.0#examples)
+
+## Semafor (Semaphore)[^1]
+
+Semafor senkronizasyon mekanizmalarından biridir ve çokly iş parçacığı veya çoklu işlemci ortamlarında kaynaklara erişimi kontrol etmek için kullanılır.
+
+Belirli bir kaynağa aynı anda kaç iş parçacığının erişebileceğini kontrol eder.
+
+Semafor bir sayaç ve bir kuyruk içerir. Sayaç, aynı anda izin verilen iş sayısını, kuyruk, sayaç doluyken sonraki işlemleri tutar.
+
+1. Bir iş parçacığı semafora erişim talebinde bulunur.
+2. Semafor sayaç değerini kontrol eder.
+   1. Eğer sayaç sıfırsa, iş parçacığı beklemeye alınır, kuyruğa eklenir.
+   2. Eğer sayaç sıfır değilse, sayaç bir azaltılır ve iş parçacığı kaynağı kullanmaya başlar.
+5. İş parçacığı kaynağı kullandıktan sonra semafora kaynağı bıraktığını bildirir.
+6. Bekleyen diğer iş parçacıklarından biri, bıraklıan kaynağı alır ve sayaç artar.
+
+- Wait ve Release Metotları: Wait semafora erişim talep eder ve kaynağı kullanmaya başlar, Release kaynağı bırakarak diğer iş parçacıklarının kullanabilmesini sağlar
+- FIFO Kuyruk: Bekleyen iş parçacıkları düzenlenir.
+
+### Örnek
+```
+using System;
+using System.Threading;
+
+class Program
+{
+    static Semaphore semaphore = new Semaphore(2, 2); // İzin verilen iş parçacığı sayısı: 2
+
+    static void Main()
+    {
+        Thread t1 = new Thread(Worker);
+        Thread t2 = new Thread(Worker);
+
+        t1.Start();
+        t2.Start();
+
+        t1.Join();
+        t2.Join();
+
+        Console.WriteLine("İşlem tamamlandı.");
+    }
+
+    static void Worker()
+    {
+        Console.WriteLine($"İş parçacığı {Thread.CurrentThread.ManagedThreadId} çalışmaya başladı.");
+
+        // Kaynağa erişim talebi
+        semaphore.WaitOne();
+
+        Console.WriteLine($"İş parçacığı {Thread.CurrentThread.ManagedThreadId} kaynağı kullanıyor.");
+
+        // Simüle edilmiş bir işlem süresi
+        Thread.Sleep(2000);
+
+        Console.WriteLine($"İş parçacığı {Thread.CurrentThread.ManagedThreadId} kaynağı kullanımını tamamladı.");
+
+        // Kaynağı bırakma
+        semaphore.Release();
+    }
+}
+```
+
+[Microsoft](https://learn.microsoft.com/en-us/dotnet/api/system.threading.semaphore?view=net-8.0#examples)
+
+### Join();
+Thread nesnesinin tamamlanmasını beklemek için kullanılan bir metotdur. 
+
+Join ile kullanılan iş parçacıklarının işlerinin tamamlamadan önce ana iş parçacığının devam etmesini engeller.
+
+[Microsoft Join](https://learn.microsoft.com/tr-tr/dotnet/api/system.threading.thread.join?view=net-8.0#system-threading-thread-join)
 
 ## Race Condition
 Birden fazla iş parcacığının aynı anda bir kaynağa erişmeye çalıştığı durumu ifade eder. Bu durum kontrol edilmeze veri bütünlüğü sorunları ortaya çıkabilir.
