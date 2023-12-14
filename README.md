@@ -11,10 +11,8 @@
 7. [Fiber Thread](https://github.com/furkandalak/Examples/blob/main/README.md#fiber-thread)
 8. [Race Condition](https://github.com/furkandalak/Examples/blob/main/README.md#race-condition)
 
-## Semafor (Semaphore)
-*Fransızca sémaphore*
-- *isim* Demir yollarında gündüz mekanik olarak kırmızı bir kolla, gece kırmızı ışıkla işaret veren alet.
-- *isim* İki gemi veya gemi ile kıyı istasyonu arasında haberleşmede kullanılan üç kollu işaret sütunu.
+## Semafor (Semaphore)[^1]
+
 
 Semafor senkronizasyon mekanizmalarından biridir ve çokly iş parçacığı veya çoklu işlemci ortamlarında kaynaklara erişimi kontrol etmek için kullanılır.
 
@@ -282,3 +280,8 @@ Wikipedia [Örnek](https://en.wikipedia.org/wiki/Race_condition#Example)
 
 ## Ekstra
 Pathfinder olayı [TR](https://medium.com/@gokhansengun/mars-ke%C5%9Fif-arac%C4%B1-pathfinderdaki-i%CC%87lgin%C3%A7-yaz%C4%B1l%C4%B1m-problemi-5b6ebe771d55), [EN](https://www.rapitasystems.com/blog/what-really-happened-software-mars-pathfinder-spacecraft)
+
+
+[^1]: *Fransızca sémaphore*
+- *isim* Demir yollarında gündüz mekanik olarak kırmızı bir kolla, gece kırmızı ışıkla işaret veren alet.
+- *isim* İki gemi veya gemi ile kıyı istasyonu arasında haberleşmede kullanılan üç kollu işaret sütunu.
