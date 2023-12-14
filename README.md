@@ -91,13 +91,31 @@ Gerçek zamanlı sistemlerde ortaya çıkabilen bir durumdur ve öncelik tabanl�
 
 Normalde daha yüksek önceliğe sahip bir iş parçacığının daha düşük bir önceliğe sahip bir iş parçacığı tarafından bloke edilmesini ifade eder.
 
+> [!WARNING]
+> Düşük öncelikli iş parçacığı ortak bir Kritik Bölge'de işlem yapmıyorsa Priority Inversion problemi yaşanmaz.
+
 ### Örnek
+
+Bu örnek için Mutex senkronizasyon metodu kullanılmaktadır.
+
 - Yüksek Öncelikli İş Parçacığı (High Priority Task) > **H**
 - Orta Öncelikli İş Parçacığı (Medium Priority Task) > **M**
 - Düşük Öncelikli İş Parçacığı (Low Priority Task) > **L**
 - Kritik Bölge (Critical Section) > **CS**
 
-  
+**L ve H aynı CS'i paylaşmaktadır. M paylaşmamaktadır.**
+
+*L < M < H*
+
+1. **L** *CS* içinde çalışmaktadır.
+2. 5. **H** başlatılır ve *CS*'e erişim talep eder, **L**'nin *CS*'den çıkmasını bekler.
+3. **M** başlatılır.
+7. **M** **L**'yi durdurur ve işlemine başlar.
+8. **M** tüm işlemini gerçekleştirir ve bitirir.
+9. **L** kaldığı yerden devam eder.
+10. **L** *CS*'den çıkar ve **H** *CS*'e girer.
+
+Görüldüğü üzere bu durumda **M**, **L** ve **H** iş parçalarını geciktirmiştir. **H** daha yüksek öncelikli olmasına ve **M** ile aynı *CS*'i paylaşmamasına rağmen beklemiştir.
 
 ## Asenkron (Asynchronous) 
 İşlemin başka bir işlemin tamamlanmasını beklemeden devam edebilmesi yeteneği 
