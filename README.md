@@ -91,7 +91,19 @@ Kritik Bölge, aynı anda sadece bir iş parçacığının erişmesine izin veri
 
 Bu bölgeler, paylaşılan kaynaklara güvenli bir şekilde erişim sağlayarak eş zamanlılık sorunlarını önlemek için kullanılır.
 
-Temel amacı paylaşılan verilere paralel erişimi kontrol etmek ve güvenli bir ortam sağlamaktır. [Race Condition]'u engeller.
+Temel amacı paylaşılan verilere paralel erişimi kontrol etmek ve güvenli bir ortam sağlamaktır. [Race Condition](https://github.com/furkandalak/Examples/blob/main/README.md#race-condition)'u engeller.
+
+1. Mutual Exclusion: Kritik bölge, aynı anda sadece bir iş parçacığının içine girebildiği bir yapıdır.
+2. Veri Bütünlüğü: Kritik Bölge içindeki kodun çalışması tamamlanınca, veri bütünlüğü korunmuş olur.
+
+```
+lock (lockObject)
+{
+    // Kritik bölgeye ait kod
+    // ...
+    // Paylaşılan verilere güvenli bir şekilde erişim
+}
+```
 
 ## Priority Inversion (Öncelik Çevirme)
 Gerçek zamanlı sistemlerde ortaya çıkabilen bir durumdur ve öncelik tabanlı bir işletim sistemi ortamında meydana gelir.
