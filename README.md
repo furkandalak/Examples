@@ -8,6 +8,25 @@
 - [x] Thread Lock
 
 
+
+## Semafor (Semaphore)
+*Fransızca sémaphore*
+*isim* Demir yollarında gündüz mekanik olarak kırmızı bir kolla, gece kırmızı ışıkla işaret veren alet.
+*isim* İki gemi veya gemi ile kıyı istasyonu arasında haberleşmede kullanılan üç kollu işaret sütunu.
+
+Semafor senkronizasyon mekanizmalarından biridir ve çokly iş parçacığı veya çoklu işlemci ortamlarında kaynaklara erişimi kontrol etmek için kullanılır.
+
+Belirli bir kaynağa aynı anda kaç iş parçacığının erişebileceğini kontrol eder.
+
+Semafor bir sayaç ve bir kuyruk içerir. Sayaç, aynı anda izin verilen iş sayısını, kuyruk, sayaç doluyken sonraki işlemleri tutar.
+
+1. Bir iş parçacığı semafora erişim talebinde bulunur.
+2. Semafor sayaç değerini kontrol eder.
+   1. Eğer sayaç sıfırsa, iş parçacığı beklemeye alınır, kuyruğa eklenir.
+   2. Eğer sayaç sıfır değilse, sayaç bir azaltılır ve iş parçacığı kaynağı kullanmaya başlar.
+5. İş parçacığı kaynağı kullandıktan sonra semafora kaynağı bıraktığını bildirir.
+6. Bekleyen diğer iş parçacıklarından biri, bıraklıan kaynağı alır ve sayaç artar.
+
 priority inversion 
 
 ## Asenkron (Asynchronous) 
@@ -151,11 +170,6 @@ C# içinde doğrudan kullanılan bir terim değil. Daha hafif iş parçalarına 
 
 ## Race Condition
 Birden fazla iş parcacığının aynı anda bir kaynağa erişmeye çalıştığı durumu ifade eder. Bu durum kontrol edilmeze veri bütünlüğü sorunları ortaya çıkabilir.
-
-## Semafor (Semaphore)
-> *Fransızca sémaphore*
-> *isim* Demir yollarında gündüz mekanik olarak kırmızı bir kolla, gece kırmızı ışıkla işaret veren alet.
-> *isim* İki gemi veya gemi ile kıyı istasyonu arasında haberleşmede kullanılan üç kollu işaret sütunu.
 
 Wikipedia [Örnek](https://en.wikipedia.org/wiki/Race_condition#Example)
 
