@@ -27,28 +27,70 @@ Asenkron tek bir Thread içinde birden fazla işlemin aynı anda çalışmasıd�
 ### Await 
 Asenkron görevin tamamlanmasını bekletir. 
 ```
-async Task<int> LongRunningOperationAsync()
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
 {
-    // Uzun süren bir işlem simülasyonu
-    await Task.Delay(2000);
-    
-    return 42;
-}
-
-async void MyAsyncMethod()
-{
-    Console.WriteLine("İşlem başlıyor...");
-    var myAsyncOperation = LongRunningOperationAsync();
-
-    Console.WriteLine("Devam ediyor");
-
-    int result = await LongRunningOperationAsync();
-
-    Console.WriteLine("İşlem tamamlandı. Sonuç: " + result);
+    public class Test
+    {
+        public async Task TestAsync1()
+        {
+            Console.WriteLine("TestAsync1 Started (" + Thread.CurrentThread.ManagedThreadId + ". Thread)");
+            await Task.Delay(1000);
+            Console.WriteLine("TestAsync1 Ended (" + Thread.CurrentThread.ManagedThreadId + ". Thread)");
+        }
+        
+        public async Task TestAsync2()
+        {
+            Console.WriteLine("TestAsync2 Started (" + Thread.CurrentThread.ManagedThreadId + ". Thread)");
+            await Task.Delay(1000);
+            Console.WriteLine("TestAsync2 Ended (" + Thread.CurrentThread.ManagedThreadId + ". Thread)");
+        }
+        public async Task Main()
+        {
+            Console.WriteLine("Main Started at " + Thread.CurrentThread.ManagedThreadId + ". thread");
+            
+            Task testTask1 = TestAsync1();
+            Task testTask2 = TestAsync2();
+            
+            Console.WriteLine("Main still going (" + Thread.CurrentThread.ManagedThreadId + ". Thread)");
+            
+            await testTask1;
+            await testTask2;
+            
+            Console.WriteLine("Main Ended at " + Thread.CurrentThread.ManagedThreadId + ". thread");
+        }
+    }
 }
 ```
+```
+using System;
+using System.Threading;
 
-Await keywordu threadin sonunda kullanılarak o noktaya kadar async operasyon çalışabilir. 
+namespace ConsoleApplication1
+{
+    internal class Program
+    {
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("Program Starts at " + Thread.CurrentThread.ManagedThreadId + ". thread");
+            
+            Console.WriteLine("Program Starts Tasks");
+            Test testMain = new Test();
+            var task = testMain.Main();
+            
+            Console.WriteLine("Program Continues at " + Thread.CurrentThread.ManagedThreadId + ". thread");
+            
+            task.Wait();
+            
+            Console.WriteLine("Program Ends at " + Thread.CurrentThread.ManagedThreadId + ". thread");
+        }
+
+    }
+}
+```
 
 
 ### Örnek Kahvaltı
