@@ -18,10 +18,11 @@
 ## Asenkron (Asynchronous) 
 İşlemin başka bir işlemin tamamlanmasını beklemeden devam edebilmesi yeteneği 
  
-Bir işlemin sonucu beklenirken başka bir işlem devam edebilir. Örn.: Uzun süreli işlemler, dosya okuma, ağ çağrıları/bağlantıları beklenirken program başka yanıtlar verebilir. 
+Bir işlemin sonucu beklenirken başka bir işlem devam edebilir, eş zamanlı çalışabilir. Örn.: Uzun süreli işlemler, dosya okuma, ağ çağrıları/bağlantıları beklenirken program başka yanıtlar verebilir. 
 
 ![](https://github.com/furkandalak/Examples/blob/main/asyncsync.png)
- 
+
+
 ### Await 
 Asenkron görevin tamamlanmasını bekletir. 
 ```
@@ -36,12 +37,83 @@ async Task<int> LongRunningOperationAsync()
 async void MyAsyncMethod()
 {
     Console.WriteLine("İşlem başlıyor...");
+    var myAsyncOperation = LongRunningOperationAsync();
+
+    Console.WriteLine("Devam ediyor");
 
     int result = await LongRunningOperationAsync();
 
     Console.WriteLine("İşlem tamamlandı. Sonuç: " + result);
 }
 ```
+
+Await keywordu threadin sonunda kullanılarak o noktaya kadar async operasyon çalışabilir. 
+
+
+### Örnek Kahvaltı
+Bir kahvaltının hazırlanma durumunu ele alalım.
+
+1. Çay suyu kaynamaya bırakılır.
+2. Patatesler fritöze atılır.
+3. Ekmekler kızartılmaya bırakılır.
+4. Çay demlenir.
+5. Patatesler alınır.
+6. Ekmekler alınır.
+
+Ancak bilgisayara bu işlemi yapmasını söylemek senkron bir işlemle mümkün değildir. Kod parçacığımız çay suyunu kaynatıp demleme sonucunu almadan diğer işlemlere başlamaz. Bu noktada Async programlama yardımcı olur.
+
+#### Async Olmasına rağmen Await ile bekleyen Örnek
+```
+Coffee cup = PourCoffee();
+Console.WriteLine("Coffee is ready");
+
+Task<Egg> eggsTask = FryEggsAsync(2);
+Egg eggs = await eggsTask;
+Console.WriteLine("Eggs are ready");
+
+Task<Bacon> baconTask = FryBaconAsync(3);
+Bacon bacon = await baconTask;
+Console.WriteLine("Bacon is ready");
+
+Task<Toast> toastTask = ToastBreadAsync(2);
+Toast toast = await toastTask;
+ApplyButter(toast);
+ApplyJam(toast);
+Console.WriteLine("Toast is ready");
+
+Juice oj = PourOJ();
+Console.WriteLine("Oj is ready");
+Console.WriteLine("Breakfast is ready!");
+```
+
+#### Gerçek Async Örneği
+```
+Coffee cup = PourCoffee();
+Console.WriteLine("Coffee is ready");
+
+Task<Egg> eggsTask = FryEggsAsync(2);
+Task<Bacon> baconTask = FryBaconAsync(3);
+Task<Toast> toastTask = ToastBreadAsync(2);
+
+Toast toast = await toastTask;
+ApplyButter(toast);
+ApplyJam(toast);
+Console.WriteLine("Toast is ready");
+Juice oj = PourOJ();
+Console.WriteLine("Oj is ready");
+
+Egg eggs = await eggsTask;
+Console.WriteLine("Eggs are ready");
+Bacon bacon = await baconTask;
+Console.WriteLine("Bacon is ready");
+
+Console.WriteLine("Breakfast is ready!");
+```
+
+
+Aşağıdaki link Kahvaltı Hazırlama örneğinin ve Async programlamanın tüm mantığını açıklıyor.
+
+[Microsoft](https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/)
 
 ## Thread Lock 
 Ortak kaynağa aynı anda birden fazla iş parçasının erişimin engellemeye yarayan mekanizmadır. 
