@@ -92,6 +92,20 @@ namespace ConsoleApplication1
 }
 ```
 
+Output:
+```
+Program Starts at 1. thread
+Program Starts Tasks
+Main Started at 1. thread
+TestAsync1 Started (1. Thread)
+TestAsync2 Started (1. Thread)
+Main still going (1. Thread)
+Program Continues at 1. thread
+TestAsync2 Ended (4. Thread)
+TestAsync1 Ended (4. Thread)
+Main Ended at 4. thread
+Program Ends at 1. thread
+```
 
 ### Örnek Kahvaltı
 Bir kahvaltının hazırlanma durumunu ele alalım.
