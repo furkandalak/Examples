@@ -1,17 +1,17 @@
 # Dalak Async Task
 
-2. [Asenkron](https://github.com/furkandalak/Examples/blob/main/README.md#asenkron-asynchronous)
+1. [Asenkron](https://github.com/furkandalak/Examples/blob/main/README.md#asenkron-asynchronous)
    1. [Await](https://github.com/furkandalak/Examples/blob/main/README.md#await)
-3. [Thread Lock](https://github.com/furkandalak/Examples/blob/main/README.md#thread-lock)
-4. [Thread Pool](https://github.com/furkandalak/Examples/blob/main/README.md#thread-pool)
-5. [Thread.Run()](https://github.com/furkandalak/Examples/blob/main/README.md#taskrun)
-6. [Thread VS Thread.Run()](https://github.com/furkandalak/Examples/blob/main/README.md#taskrun-vs-thread)
-7. [Fiber Thread](https://github.com/furkandalak/Examples/blob/main/README.md#fiber-thread)
-8. [Critical Section](https://github.com/furkandalak/Examples/blob/main/README.md#critical-section-kritik-b%C3%B6lge)
-9. [Priority Inversion](https://github.com/furkandalak/Examples/blob/main/README.md#priority-inversion-%C3%B6ncelik-%C3%A7evirme)
-10. [Mutual Exlusion](https://github.com/furkandalak/Examples/blob/main/README.md#mutual-exlusion-mutex)
-11. [Semafor](https://github.com/furkandalak/Examples/blob/main/README.md#semafor-semaphore)
-12. [Race Condition](https://github.com/furkandalak/Examples/blob/main/README.md#race-condition)
+2. [Thread Lock](https://github.com/furkandalak/Examples/blob/main/README.md#thread-lock)
+3. [Thread Pool](https://github.com/furkandalak/Examples/blob/main/README.md#thread-pool)
+4. [Thread.Run()](https://github.com/furkandalak/Examples/blob/main/README.md#taskrun)
+5. [Thread VS Thread.Run()](https://github.com/furkandalak/Examples/blob/main/README.md#taskrun-vs-thread)
+6. [Fiber Thread](https://github.com/furkandalak/Examples/blob/main/README.md#fiber-thread)
+7. [Critical Section](https://github.com/furkandalak/Examples/blob/main/README.md#critical-section-kritik-b%C3%B6lge)
+8. [Priority Inversion](https://github.com/furkandalak/Examples/blob/main/README.md#priority-inversion-%C3%B6ncelik-%C3%A7evirme)
+9. [Mutual Exlusion](https://github.com/furkandalak/Examples/blob/main/README.md#mutual-exlusion-mutex)
+10. [Semafor](https://github.com/furkandalak/Examples/blob/main/README.md#semafor-semaphore)
+11. [Race Condition](https://github.com/furkandalak/Examples/blob/main/README.md#race-condition)
 
 
 
