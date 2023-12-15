@@ -19,6 +19,8 @@
 İşlemin başka bir işlemin tamamlanmasını beklemeden devam edebilmesi yeteneği 
  
 Bir işlemin sonucu beklenirken başka bir işlem devam edebilir. Örn.: Uzun süreli işlemler, dosya okuma, ağ çağrıları/bağlantıları beklenirken program başka yanıtlar verebilir. 
+
+![]([https://github.com/furkandalak/Examples/blob/main/400px-Thread_pool.svg.png](https://github.com/furkandalak/Examples/blob/main/400px-Thread_pool.svg.png)
  
 ### Await 
 Asenkron görevin tamamlanmasını bekletir. 
