@@ -22,6 +22,7 @@ Bir işlemin sonucu beklenirken başka bir işlem devam edebilir, eş zamanlı �
 
 ![](https://github.com/furkandalak/Examples/blob/main/asyncsync.png)
 
+Asenkron tek bir Thread içinde birden fazla işlemin aynı anda çalışmasıdır. Multi-Thread ile ilgili değildir. Asenkron programlama aseknron operasyonları kullananbilmek için ana threadi serbest bırakır.
 
 ### Await 
 Asenkron görevin tamamlanmasını bekletir. 
